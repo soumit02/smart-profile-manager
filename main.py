@@ -15,27 +15,30 @@ while True:
     
     if choice == '1':
         name = input("\nEnter the name: ").title()
+        if name in profiles:
+            print("\nAlready exists!")
+        else:
+            # Birth year and blood group
+            dob = input("Enter the Birth Year: ")
+            blood_group = input("Enter the Blood Group: ")
+            basic_info = (dob, blood_group) 
         
-        # Birth year and blood group
-        dob = input("Enter the Birth Year: ")
-        blood_group = input("Enter the Blood Group: ")
-        basic_info = (dob, blood_group) 
+            # Project name
+            projects_input = input("Write your projects name: ")
+            projects_list = projects_input.split(",") 
         
-        # Project name
-        projects_input = input("Write your projects name: ")
-        projects_list = projects_input.split(",") 
+            # skills
+            skills_input = input("Write down your skills: ").lower()
+            skills_set = set(skills_input.split(",")) 
         
-        # skills
-        skills_input = input("Write down your skills.: ").lower()
-        skills_set = set(skills_input.split(",")) 
-        
-        # Saving all data together in one profile
-        profiles[name] = {
-            "Basic Info": basic_info,
-            "Projects": [proj.strip() for proj in projects_list], # List comprehension for clean spacing
-            "Skills": {skill.strip() for skill in skills_set} # Set comprehension
-        }
-        print(f"\n{name}'s profile has been successfully created!")
+            # Saving all data together in one profile
+            profiles[name] = {
+                "Basic Info": basic_info,
+                "Projects": [proj.strip() for proj in projects_list], # List comprehension for clean spacing
+                "Skills": {skill.strip() for skill in skills_set} # Set comprehension
+            }
+            print(f"\n{name}'s profile has been successfully created!")
+
 
     elif choice == '2':
         search_name = input("\nEnter the name of the person you want to view the profile of: ").title()
